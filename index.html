@@ -1,8 +1,17 @@
 <!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>땅의 연대기 | 해온 투자 장부</title><style>
 :root{--paper:#f7f5ef;--ink:#242521;--soft:#68685e;--red:#842e36;--line:#d5d0c3;--serif:Georgia,'Nanum Myeongjo','Batang',serif}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.6 'DM Sans',system-ui,sans-serif}button,input,select{font:inherit}button{cursor:pointer;color:inherit;background:transparent;border:1px solid var(--line);padding:8px 15px;border-radius:3px}button:hover,button:focus-visible{border-color:var(--red);color:var(--red)}button:disabled{opacity:.48;cursor:default}header,main,footer{max-width:1300px;margin:auto;padding:0 5%}.mast{display:flex;justify-content:space-between;align-items:center;border-bottom:3px double var(--ink);padding:24px 0 16px}.mast strong{font:900 clamp(32px,4vw,55px)/1.2 var(--serif);letter-spacing:-.08em}.mast small{display:block;color:var(--red);font:700 10px Georgia;letter-spacing:.22em;margin-bottom:5px}.meta{text-align:right;font-size:13px}.meta b{font-family:Georgia;font-size:21px}.strip{display:flex;gap:22px;align-items:center;border-bottom:1px solid var(--line);padding:9px 0;font-size:12px;color:var(--soft);flex-wrap:wrap}.strip strong{color:var(--red)}.intro{padding:28px 0 20px;display:flex;justify-content:space-between;align-items:center;gap:15px}h1,h2,h3{font-family:var(--serif);margin:0;letter-spacing:-.055em}h1{font-size:34px}p{margin:6px 0 13px}small,.muted{color:var(--soft)}.stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:2px solid var(--ink);border-bottom:1px solid var(--line);padding:16px 0}.stat{padding:0 22px;border-left:1px solid var(--line)}.stat:first-child{padding-left:0;border:0}.stat small{display:block}.stat b{font:700 clamp(20px,2.4vw,34px) Georgia}.stat span{font-size:13px}.cols{display:grid;grid-template-columns:minmax(0,1.8fr) minmax(270px,1fr);gap:30px;margin:24px 0}.tabs{display:flex;gap:20px;border-bottom:1px solid var(--ink);margin-bottom:18px}.tabs button{border:none;border-bottom:3px solid transparent;border-radius:0;padding:8px 0;font-weight:700}.tabs .active{border-color:var(--red);color:var(--red)}table{width:100%;border-collapse:collapse;text-align:left}td,th{padding:12px 8px;border-bottom:1px solid var(--line)}th{color:var(--soft);font-size:12px}td:last-child,th:last-child{text-align:right}.pick{border:0;text-align:left;padding:0;font-weight:700}.pick small{display:block;font-weight:400}.chosen{background:#eee8de}.tag{font-size:12px;color:var(--red)}aside{background:#eeebe2;border-top:3px solid var(--red);align-self:start;padding:20px 23px}.kicker{font:700 12px Georgia;color:var(--red);letter-spacing:.13em}aside h2{font-size:29px;margin:4px 0}dl{margin:15px 0}dl div{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);padding:6px 0}dt{color:var(--soft)}dd{margin:0;text-align:right;font-variant-numeric:tabular-nums}.primary{background:var(--red);border-color:var(--red);color:white;font-weight:700}.primary:hover,.primary:focus-visible{color:white;background:#64222a}.wide{width:100%;margin-top:8px}select{width:100%;padding:8px;border:1px solid var(--line);background:var(--paper)}.notice{color:var(--red);font-weight:600;font-size:14px}.news{border-left:3px solid var(--red);padding-left:12px;margin:0 0 12px}.entry{border-bottom:1px solid var(--line);padding:10px 0}footer{padding-bottom:25px;font-size:12px;color:var(--soft)}footer details{border-top:1px solid var(--ink);padding:13px 0}summary{cursor:pointer}a{color:var(--red)}@media(max-width:780px){.cols{grid-template-columns:1fr;gap:16px}.stat{padding:0 8px}.intro{align-items:flex-start}.intro p{font-size:13px}.tabs{gap:15px}.strip{gap:8px}.mast{padding-top:16px}.cols:has(.chosen) aside{scroll-margin-top:10px}td,th{padding:8px 4px}}
 .inventory{margin-top:22px;border-bottom:1px solid var(--line);padding-bottom:12px}.inventory h2{font-size:24px}.inventory .muted{font-size:13px}.table-scroll{overflow-x:auto}.inventory td:not(:first-child),.inventory th:not(:first-child){text-align:right;white-space:nowrap}.inventory td{font-variant-numeric:tabular-nums}.company-form{margin:0 0 20px}.company-form label{display:block;font-weight:700;margin-bottom:4px}.company-form input{width:min(100%,340px);padding:8px 10px;background:var(--paper);border:1px solid var(--line);border-radius:3px;color:var(--ink)}[hidden]{display:none!important}
-dialog{width:min(560px,92vw);border:1px solid var(--line);border-top:3px solid var(--red);padding:22px;background:var(--paper);color:var(--ink);max-height:85vh}dialog::backdrop{background:#25252088}dialog table{margin:12px 0}dialog td{overflow-wrap:anywhere}.board-actions{display:flex;flex-wrap:wrap;gap:8px}</style>
-<header><div class="mast"><div><small>HAEON INVESTMENT JOURNAL</small><strong>땅의 연대기</strong></div><div class="meta"><span id="company-title">해온시 투자 장부</span><br><b id="issue"></b></div></div><div id="ticker" class="strip"></div></header><main><div class="intro"><div><h1 id="headline"></h1><p id="brief" class="muted"></p></div><div class="board-actions"><button id="board-open">수업 순위표</button><button id="next" class="primary"></button></div></div><form id="company-form" class="company-form"><label for="company">회사 이름</label><input id="company" required maxlength="30" placeholder="예: 해온개발" autocomplete="organization"><label for="room">수업 코드 (선택)</label><input id="room" maxlength="32" placeholder="예: ECON-01" autocomplete="off"></form><div id="stats" class="stats"></div><section class="inventory" aria-labelledby="inventory-title"><h2 id="inventory-title">보유 부동산</h2><div id="inventory"></div></section><div class="cols"><section><nav class="tabs" id="tabs"></nav><div id="panel"></div></section><aside id="side"></aside></div><p id="msg" role="status" class="notice"></p></main><dialog id="board" aria-labelledby="board-title"><h2 id="board-title">완주 순위표</h2><p id="board-room"></p><form id="join-board"><label>수업 코드 <input id="join-code" required maxlength="32"></label> <button>수업 선택</button></form><p id="board-status" role="status"></p><p id="board-post" role="status"></p><table><thead><tr><th>순위</th><th>회사</th><th>최종 청산 순자산</th></tr></thead><tbody id="board-body"></tbody></table><div class="board-actions"><button id="board-retry">다시 연결</button><button id="board-close">닫기</button></div></dialog><footer><p><a href="./index.html" download="해온시-부동산-투자게임.html">수업 배포용 게임 파일 내려받기</a></p><details><summary>수업 진행법 · 시장 데이터 출처</summary><p>도입 2분, 분기당 80초씩 12분기, 결산 토론 2분입니다. 거래소 매물은 매 분기 갱신됩니다. 매수·매도·개발·이벤트는 행동력 1을 씁니다. 잔여 행동력을 남기고 조기 결산할 수 있습니다. 매수 전 대출 방식을 선택하세요. 종료 시 모든 부동산을 즉시 매각가로 평가합니다. 이 기기에 자동 저장됩니다.</p><p id="sources"></p></details></footer>
+dialog{width:min(560px,92vw);border:1px solid var(--line);border-top:3px solid var(--red);padding:22px;background:var(--paper);color:var(--ink);max-height:85vh}dialog::backdrop{background:#25252088}dialog table{margin:12px 0}dialog td{overflow-wrap:anywhere}.board-actions{display:flex;flex-wrap:wrap;gap:8px}:root{--ink:#e9eedc;--paper:#172a2b;--line:#39504b;--soft:#b0c1ae;--red:#f4ca7c;--serif:'Georgia','Batang',serif}
+body{background:#101e20;color:var(--ink);font-family:'DM Sans',system-ui,sans-serif}
+header,main,footer{max-width:1450px;padding-left:clamp(15px,4vw,60px);padding-right:clamp(15px,4vw,60px)}
+.mast{padding:16px 0;border-bottom:1px solid var(--line)}.mast>div:first-child{display:flex;gap:14px;align-items:center}.mast strong{font-size:32px;color:#f5eccc}.mast small{font:700 10px monospace;color:#c5a46a;line-height:1.5;letter-spacing:.1em}.meta b,.stat b{font-family:monospace}.meta b{color:var(--red);font-size:17px}
+.strip{font-size:12px;padding:6px 0}.intro{padding:15px 0 12px}.intro h1{font-size:25px}.intro p{margin:0;font-size:14px}.primary{background:#e9bf77;color:#23291d;border-color:#f7d395;box-shadow:inset 0 -3px #b48e54}.primary:hover,.primary:focus-visible{color:#20271e;background:#ffe1a2}button{border-radius:4px}.company-form{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:14px}.company-form label{margin:0;font-size:13px}.company-form input{width:170px;padding:5px 9px}.stats{padding:10px 0;border:1px solid var(--line);background:#203432;border-radius:5px}.stat:first-child{padding-left:18px}.stat b{font-size:23px}.stat small{color:#b6c7b5}
+.cols{grid-template-columns:minmax(0,2.2fr) minmax(270px,1fr);gap:16px;align-items:start;margin:16px 0}.world-frame,aside,.inventory,.ledger{border:1px solid #495e50;background:#1c302f;border-radius:6px;overflow:hidden}.world-frame{box-shadow:0 7px 20px #07151666}.map-head,.map-foot{display:flex;align-items:center;justify-content:space-between;padding:10px 15px;gap:8px}.map-head h2{font-size:20px;color:#f7e8c4}.map-head small,.map-foot{font-size:12px}.map-foot{border-top:1px solid #536456;color:#d5dfce;justify-content:flex-start;flex-wrap:wrap}.key-dot{display:inline-block;width:9px;height:9px;background:#253e39;border:1px solid #f1e6c7;margin-right:4px}.key-dot.owned{background:#44775b}.key-dot.current{background:#efc77a}
+.map-scroll{overflow-x:auto}.world{position:relative;min-width:500px}.world canvas{width:100%;height:auto;display:block;image-rendering:pixelated}.map-pin{position:absolute;transform:translate(-50%,-5%);border:1px solid #ecdcb6;padding:0 4px;min-width:23px;background:#253c35;color:#f7edcf;border-radius:2px;box-shadow:1px 2px #213e3a88;font:700 11px/17px monospace}.map-pin.owned{background:#376648}.map-pin.current,.map-pin:focus-visible,.map-pin:hover{background:#f4ce83;color:#273329;border-color:#503e22;z-index:1}
+aside{padding:17px;background:#243a35;border-top:3px solid #d7b679}aside p{font-size:14px;margin:5px 0}.kicker{font:700 10px monospace}.tabs{gap:clamp(10px,2vw,27px);border-color:var(--line)}.chosen{background:#304a40}.ledger,.inventory{padding:14px 18px;margin:14px 0}.ledger h2,.inventory h2{font-size:22px}select,input,dialog{color:var(--ink);background:var(--paper)}.guide{display:flex;align-items:center;gap:10px;color:#e5dbc2;background:#293e36;padding:9px 14px;font-size:13px;border-top:1px solid #52624f}.guide b{color:#edc581}.guide canvas{width:36px;height:36px;image-rendering:pixelated;background:#162b2a;flex-shrink:0;border:1px solid #aa9870}.notice:empty{display:none}.notice{margin:10px 0}.board-actions{align-items:center}footer{padding-top:10px}dialog{box-shadow:0 12px 55px #0009}.wide{margin-top:7px}
+@media(max-width:780px){.cols{grid-template-columns:1fr}.stat b{font-size:18px}.stat:first-child{padding-left:8px}.company-form input{width:135px}.intro{flex-wrap:wrap}.mast small{display:none}.map-head{padding:7px 10px}.strip span:last-child{display:none}.map-foot{font-size:11px}.inventory,.ledger{padding:10px}.stats .stat{min-width:0}.stat span{font-size:10px}.world{min-width:520px}.company-form{display:grid;grid-template-columns:auto 1fr}.company-form input{width:100%}}
+#citizens{position:absolute;inset:0;pointer-events:none}</style>
+<header><div class="mast"><div><small>HAEON CITY<br>INVESTMENT RPG</small><strong>땅의 연대기</strong></div><div class="meta"><span id="company-title">해온시 투자 장부</span><br><b id="issue"></b></div></div><div id="ticker" class="strip"></div></header><main><div class="intro"><div><h1 id="headline"></h1><p id="brief" class="muted"></p></div><div class="board-actions"><button id="board-open">수업 순위표</button><button id="next" class="primary"></button></div></div><form id="company-form" class="company-form"><label for="company">회사 이름</label><input id="company" required maxlength="30" placeholder="예: 해온개발" autocomplete="organization"><label for="room">수업 코드 (선택)</label><input id="room" maxlength="32" placeholder="예: ECON-01" autocomplete="off"></form><div id="stats" class="stats"></div><div class="cols"><section class="world-frame"><div class="map-head"><h2>해온시 전도</h2><small>매물 번호를 눌러 조사</small></div><div class="map-scroll"><div class="world"><canvas id="world" width="512" height="244" aria-label="해온시 항구와 네 구역의 등각 도시 지도"></canvas><canvas id="citizens" width="512" height="244" aria-hidden="true"></canvas><div id="pins"></div></div></div><div class="map-foot"><span><i class="key-dot"></i>매물</span><span><i class="key-dot owned"></i>보유</span><span><i class="key-dot current"></i>선택</span></div><div class="guide"><canvas id="portrait" width="16" height="16" aria-hidden="true"></canvas><div><b>개발 보좌관</b><div id="guide-line"></div></div></div></section><aside id="side"></aside></div><p id="msg" role="status" class="notice"></p><section class="ledger"><nav class="tabs" id="tabs"></nav><div id="panel"></div></section><section class="inventory" aria-labelledby="inventory-title"><h2 id="inventory-title">보유 부동산</h2><div id="inventory"></div></section></main><dialog id="board" aria-labelledby="board-title"><h2 id="board-title">완주 순위표</h2><p id="board-room"></p><form id="join-board"><label>수업 코드 <input id="join-code" required maxlength="32"></label> <button>수업 선택</button></form><p id="board-status" role="status"></p><p id="board-post" role="status"></p><table><thead><tr><th>순위</th><th>회사</th><th>최종 청산 순자산</th></tr></thead><tbody id="board-body"></tbody></table><div class="board-actions"><button id="board-retry">다시 연결</button><button id="board-close">닫기</button></div></dialog><footer><p><a href="./index.html" download="해온시-부동산-투자게임.html">수업 배포용 게임 파일 내려받기</a></p><details><summary>수업 진행법 · 시장 데이터 출처</summary><p>도입 2분, 분기당 80초씩 12분기, 결산 토론 2분입니다. 거래소 매물은 매 분기 갱신됩니다. 매수·매도·개발·이벤트는 행동력 1을 씁니다. 잔여 행동력을 남기고 조기 결산할 수 있습니다. 매수 전 대출 방식을 선택하세요. 종료 시 모든 부동산을 즉시 매각가로 평가합니다. 이 기기에 자동 저장됩니다.</p><p id="sources"></p></details></footer>
 <script>
 const $=id=>document.getElementById(id), money=n=>n.toFixed(2)+'억', key='haeon-ledger-v1';
 const totalQuarters=12, quarterMs=80000, projectQuarters=3;
@@ -99,22 +108,137 @@ function renderInventory(){
     '</tbody></table></div><p class="muted">손익은 결산된 순영업현금에서 대출이자를 빼고 공정가치 변동을 더한 값입니다. 연간 누적은 현재 게임 연도의 결산분만 합산합니다. 결산 기록이 없으면 ‘—’로 표시합니다.</p>';
 }
 
+const plots=[[2,2],[8,2],[1,5],[5,5],[0,7],[7,0],[4,1],[3,7],[9,0],[9,3],[2,6],[6,6]];
+function drawWorld(){
+  const canvas=$('world'), c=canvas.getContext('2d'), W=canvas.width,H=canvas.height;
+  const pins=$('pins');pins.replaceChildren();
+  let seed=41812;const rand=()=>((seed=Math.imul(seed,1664525)+1013904223>>>0)/4294967296);
+  const rect=(x,y,w,h,color)=>{c.fillStyle=color;c.fillRect(Math.round(x),Math.round(y),w,h)};
+  function poly(points,color){
+    c.fillStyle=color;c.beginPath();points.forEach(([x,y],i)=>i?c.lineTo(Math.round(x),Math.round(y)):c.moveTo(Math.round(x),Math.round(y)));c.closePath();c.fill();
+  }
+  const pos=(u,v)=>[252+(u-v)*21,28+(u+v)*10];
+  const tile=(u,v)=>[pos(u,v),pos(u+1,v),pos(u+1,v+1),pos(u,v+1)];
+  function block(x,y,w,d,h,roof,left,right){
+    poly([[x-w,y-d],[x,y],[x,y-h],[x-w,y-h-d]],left);
+    poly([[x,y],[x+w,y-d],[x+w,y-d-h],[x,y-h]],right);
+    poly([[x-w,y-d-h],[x,y-2*d-h],[x+w,y-d-h],[x,y-h]],roof);
+  }
+  function tree(x,y,h){
+    rect(x-1,y-6,3,7,'#705435');
+    for(let t=0;t<3;t++){
+      const tip=y-h+t*4,w=4+t*1.8;
+      poly([[x,tip-4],[x+w,tip+6],[x+w-2,tip+8],[x-w,tip+8]],'#365d4e');
+      poly([[x,tip-4],[x,tip+6],[x-w,tip+8]],t%2?'#6a9657':'#87a75b');
+    }
+  }
+  function tower(x,y,w,h,industrial){
+    const d=Math.round(w*.48);
+    block(x,y,w,d,h,industrial?'#d6ba88':'#ebe3c5',industrial?'#cc9770':'#c8c2a1',industrial?'#9e6e5e':'#839998');
+    for(let k=4;k<h-2;k+=5)for(let j=3;j<w-1;j+=4){
+      rect(x-j,y-k-j*.46,2,3,'#597c82');rect(x+j-1,y-k-j*.46,2,3,'#44646d');
+    }
+    block(x-1,y-h-3,w*.52,d*.52,3,industrial?'#a8806d':'#abbdb0','#a99578','#738b86');
+    if(industrial){rect(x+4,y-h-16,4,11,'#a76550');rect(x+4,y-h-15,4,2,'#ede3c8')}
+  }
+  function house(x,y){
+    block(x,y,7,3.5,6,'#d9cdaa','#e2cca1','#b39e7e');
+    poly([[x-8,y-9],[x-1,y-15],[x+7,y-12],[x,y-6]],'#ba7157');
+    poly([[x,y-6],[x+7,y-12],[x+8,y-8]],'#874f46');rect(x-3,y-4,2,3,'#655e50');
+  }
+  rect(0,0,W,H,'#77b2b4');
+  for(let i=0;i<1800;i++)rect(rand()*W,rand()*H,1+rand()*7,1,rand()>.6?'#abd2c7':'#6ba5aa');
+  const cells=[];
+  for(let u=-18;u<19;u++)for(let v=-17;v<20;v++){
+    if(u>10||v>8+(u<0?2:0))continue;
+    const [x,y]=pos(u+.5,v+.5);if(x<-30||x>W+30||y< -10||y>H+35)continue;
+    const road=[-2,3,10].includes(u)||[-2,4,8].includes(v);
+    poly(tile(u,v).map(([x,y])=>[x,y+3]),'#a18f68');
+    poly(tile(u,v),road?'#c9c6ab':['#aabe7e','#acc583','#a5bc77','#a3bc78'][Math.floor(rand()*4)]);
+    if(road){
+      poly(tile(u,v).map(([px,py])=>[x+(px-x)*.77,y+(py-y)*.77]),'#bbb9a4');
+      if(v===4)poly([pos(u+.25,v+.49),pos(u+.65,v+.49),pos(u+.65,v+.54),pos(u+.25,v+.54)],'#e3d9b3');
+    }else for(let i=0;i<7;i++){let [gx,gy]=pos(u+rand(),v+rand());rect(gx,gy,2,1,rand()>.3?'#91ac69':'#cee092')}
+    cells.push({u,v,x,y,road});
+  }
+  cells.sort((a,b)=>a.y-b.y||a.x-b.x);
+  const available=listings();
+  for(const {u,v,x,y,road} of cells){
+    const id=plots.findIndex(([a,b])=>a===u&&b===v);
+    if(id>=0){
+      const type=assets[id][2],developed=s.developed?.includes(id);
+      const building=developed&&s.pf&&s.developed.at(-1)===id;
+      const selected=tab==='거래소'&&sel===id;
+      if(selected||s.own[id])poly(tile(u,v),selected?'#e3bb66':'#77ac88');
+      if(building){
+        tower(x,y+5,12,4+s.pf.age*6,false);rect(x-12,y-30,2,29,'#c48a43');rect(x-17,y-31,26,2,'#b47a37');rect(x+7,y-29,1,8,'#75664b');
+      }else if(developed||type==='오피스')tower(x,y+6,12,25+(id%3)*4,false);
+      else if(type==='공장')tower(x,y+5,16,10,true);
+      else if(type==='아파트'){tower(x-7,y+2,7,22,false);tower(x+6,y+6,8,19,false)}
+      else{poly(tile(u,v).map(([px,py])=>[x+(px-x)*.74,y+(py-y)*.74]),'#cab582');for(const dx of [-10,0,10])rect(x+dx,y+4-Math.abs(dx)*.42,2,4,'#856e4a')}
+      if(!s.done&&(available.includes(id)||s.own[id]||building)){
+        const button=document.createElement('button');
+        button.className='map-pin'+(selected?' current':'')+(s.own[id]?' owned':'');
+        button.style.left=x/W*100+'%';button.style.top=(y+5)/H*100+'%';
+        button.textContent=building?'PF':String(id+1).padStart(2,'0');button.title=assets[id][0];
+        button.setAttribute('aria-label',assets[id][0]+(building?' 개발 현장':' 선택'));
+        button.onclick=()=>{if(building){tab='개발 PF';render();$('tabs').scrollIntoView({block:'center'})}else selectAsset(id)};
+        pins.append(button);
+      }
+    }else if(!road){
+      if(u< -2||v< -1||rand()<.33){tree(x-6,y+1,15+rand()*5);if(rand()>.3)tree(x+6,y+4,13+rand()*5)}
+      else if(rand()>.4){house(x-5,y+2);if(rand()>.45)house(x+6,y+4)}
+      else if(u>5)tower(x,y+4,10,8,true);else tree(x,y,17);
+    }
+  }
+  for(const [x,y] of [[75,183],[452,225],[181,228]]){
+    poly([[x-7,y],[x+9,y],[x+5,y+4],[x-4,y+4]],'#775e51');rect(x,y-14,1,14,'#755d4a');poly([[x-1,y-14],[x-1,y-2],[x-7,y-2]],'#faf0cb');
+  }
+}
+
+function animateStreets(time){
+  const ctx=$('citizens').getContext('2d');
+  ctx.clearRect(0,0,512,244);
+  const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const t=reduced?0:time/1000;
+  const routes=[[3.5,0,0,3,'#426573'],[4,4.5,3,0,'#ae6254'],[-1,4.5,3,0,'#667855'],[6,8.5,3,0,'#ac823e']];
+  routes.forEach(([u,v,du,dv,coat],i)=>{
+    const progress=1-Math.abs(((t*.075+i*.58)%2)-1);
+    const x=Math.round(252+((u+du*progress)-(v+dv*progress))*21);
+    const y=Math.round(28+((u+du*progress)+(v+dv*progress))*10);
+    const step=Math.floor(t*4+i)%2;
+    const dot=(dx,dy,w,h,color)=>{ctx.fillStyle=color;ctx.fillRect(x+dx,y+dy,w,h)};
+    dot(-2,0,5,1,'#969880');dot(-1,-2,1,2+step,'#514e42');dot(1,-2,1,3-step,'#514e42');
+    dot(-2,-5,4,4,coat);dot(-1,-7,3,2,'#edc393');dot(-2,-8,4,2,'#634c3e');
+  });
+  if(!reduced)setTimeout(()=>requestAnimationFrame(animateStreets),150);
+}
+requestAnimationFrame(animateStreets);
+function paintAdvisor(){
+  const ctx=$('portrait').getContext('2d');
+  const palette={h:'#513e37',l:'#ad8860',s:'#edc395',d:'#c98c64',e:'#2e3732',c:'#658878',j:'#375653',w:'#f2dfbc'};
+  const rows=['................','.....hhhhhh.....','...hhlllhhhh....','...hlllhllhhh...','...hhhsssshhs...','...hssessesh....','...sssssssss....','....sddssdss....','.....ssddss.....','......ssss......','....jjwsswjj....','...jjccwwccjj...','..jjjccwwccjjj..','.jjjjccwwccjjjj.','.jjjjccccccjjjj.','.jjjjccccccjjjj.'];
+  rows.forEach((row,y)=>Array.from(row).forEach((pixel,x)=>{if(palette[pixel]){ctx.fillStyle=palette[pixel];ctx.fillRect(x,y,1,1)}}));
+}
 function render(){
   let time=displayTime();
   const offers=listings();
   if(!s.own[sel]&&!offers.includes(sel)){sel=offers[0]??0;loan='현금'}
   $('company-title').textContent=s.company||'해온시 투자 장부';
   $('company-form').hidden=s.started||s.done;
+  drawWorld();
+  paintAdvisor();
+  $('guide-line').textContent=s.done?'결산 장부에서 이번 투자 성과를 확인하세요.':!s.started?'회사 이름을 정하고 해온시에서 첫 투자를 시작하세요.':s.pf?'공사 진행 중입니다. 지도에서 PF 표식을 눌러 공정을 확인하세요.':[3,6].includes(s.q)&&!s.event?'이번 분기에 특별 계약이 열렸습니다. 계약 조건을 살펴보세요.':'지도에서 매물을 선택하면 가격과 자금 조달 조건을 확인할 수 있습니다.';
   renderInventory();$('ticker').innerHTML='<strong>경제 지표</strong><span>게임 기준금리 '+s.rate.toFixed(2)+'%</span><span>달러당 '+Math.round(s.fx).toLocaleString()+'원</span><span>실제 관측일 및 출처는 하단 참조</span>';$('headline').textContent=s.done?'최종 투자 결산':'제'+s.q+'분기 투자 장부';$('brief').textContent=s.done?'12분기 영업을 마쳤습니다. 수익을 가장 크게 바꾼 결정을 찾아보세요.':scenarios[s.q-1][0];$('next').textContent=s.done?'새 게임':!s.started?'게임 시작':'분기 결산 →';$('stats').innerHTML=[['가용 현금',s.cash.toFixed(2),'억 원'],['청산 순자산',worth().toFixed(2),'억 원'],['남은 행동력',s.done?'0':s.ap,' / 2'],['분기 남은 시간',s.done?'종료':time,'']].map(([k,v,u],i)=>'<div class="stat"><small>'+k+'</small><b '+(i===3?'id="clock"':'')+'>'+v+'</b> <span>'+u+'</span></div>').join('');
 let names=s.done?['결산','투자 기록']:['거래소','개발 PF','특별 계약','투자 기록'];$('tabs').innerHTML=names.map(n=>'<button class="'+(n===tab?'active':'')+'" onclick="tab=this.textContent;render()">'+n+'</button>').join('');let a=assets[sel],o=s.own[sel],p=s.prices[sel],allow=s.started&&!s.done;
-if(tab==='거래소'){$('panel').innerHTML='<p class=muted>제'+s.q+'분기 신규·기존 매물 '+offers.length+'건 · 보유 자산은 위 목록에서 선택</p><table><thead><tr><th>매물 · 소재지</th><th>유형</th><th>평가액</th></tr></thead><tbody>'+offers.map(i=>{const a=assets[i];return '<tr class="'+(i===sel?'chosen':'')+'"><td><button class="pick" onclick="selectAsset('+i+')">'+a[0]+'</button><small style="display:block">'+a[1]+(s.own[i]?' · 보유 중':'')+'</small></td><td>'+a[2]+'</td><td>'+money(s.prices[i])+'</td></tr>'}).join('')+(offers.length?'':'<tr><td colspan=3>이번 분기에 매수할 수 있는 매물이 없습니다.</td></tr>')+'</tbody></table>'}
+if(tab==='거래소'){$('panel').innerHTML='<p class=muted>제'+s.q+'분기 신규·기존 매물 '+offers.length+'건 · 보유 자산은 보유 부동산 목록에서 선택</p><table><thead><tr><th>매물 · 소재지</th><th>유형</th><th>평가액</th></tr></thead><tbody>'+offers.map(i=>{const a=assets[i];return '<tr class="'+(i===sel?'chosen':'')+'"><td><button class="pick" onclick="selectAsset('+i+')">'+a[0]+'</button><small style="display:block">'+a[1]+(s.own[i]?' · 보유 중':'')+'</small></td><td>'+a[2]+'</td><td>'+money(s.prices[i])+'</td></tr>'}).join('')+(offers.length?'':'<tr><td colspan=3>이번 분기에 매수할 수 있는 매물이 없습니다.</td></tr>')+'</tbody></table>'}
 else if(tab==='개발 PF'){$('panel').innerHTML='<h2>토지 개발 사업</h2><p>무담보 토지 한 필지와 현금 1억을 출자합니다. 세 분기에 걸쳐 2억씩 인출하고, 준공 후 매각대금에서 원리금을 우선 상환합니다.</p>'+ (s.pf?pairs([['진행 공정',s.pf.age+' / 3분기'],['출자금',money(s.pf.equity)],['누적 공사비',money(s.pf.cost)],['PF 인출 잔액',money(s.pf.draw)],['누적 이자',money(s.pf.int)]]):'<p class="news">거래소에서 보유 토지를 선택하고 ‘PF 개발 착수’를 누르세요. 10분기까지 착수할 수 있습니다.</p>')+'<p>공사비는 착공 시점 대비 환율에 연동됩니다. PF 금리는 게임 기준금리 + 3%p입니다. 매각 수수료는 2%이며 자기자본을 초과하는 손실은 대주가 부담합니다.</p>'}
 else if(tab==='특별 계약'){let active=[3,6].includes(s.q);$('panel').innerHTML='<h2>'+(s.q===3?'막차역 매수권':s.q===6?'앵커 기업 유치권':'계약 일정')+'</h2><p>'+(active?'행동력 1과 계약금 0.30억 원을 투입합니다. 실패하면 계약금을 잃습니다.':'3분기에는 역 신설 후보지 매수권, 6분기에는 기업 유치 계약이 열립니다.')+'</p>'+(active?pairs([['계약 성사 확률',s.q===3?'40%':'55%'],['성공 시 순이익',s.q===3?'0.75억':'0.45억'],['실패 시 순손실','0.30억']])+'<button onclick="chance()" '+(s.event||!allow?'disabled':'')+'>'+(s.event?'참여 완료':'계약 참여')+'</button>':'')}
 else if(tab==='결산'){$('panel').innerHTML='<h2 id="income-title">손익계산서</h2>'+pairs([['최종 청산 순자산',money(worth())],['시작 자본 대비 손익',money(worth()-10)],['임대·보유 순현금',money(s.rent)],['차입 이자',money(-s.interest)],['개발사업 이익',money(s.pfGain)],['특별 계약 손익',money(s.eventGain)],['매매·평가손익 및 예금이자',money(worth()-10-s.rent+s.interest-s.pfGain-s.eventGain)]])}
 else $('panel').innerHTML='<h2>투자 기록</h2>'+(s.log.map(l=>'<div class="entry">'+l+'</div>').join('')||'<p>게임을 시작하면 거래 내역이 기록됩니다.</p>');
 if($('income-title'))$('income-title').textContent=s.company+' 손익계산서';
-if(tab==='거래소'){$('side').innerHTML='<span class="kicker">PROPERTY FILE / '+String(sel+1).padStart(2,'0')+'</span><h2>'+a[0]+'</h2><small>'+a[1]+' · '+a[2]+' · '+(o?'보유 자산':s.developed?.includes(sel)?'개발 출자 완료':'매수 가능')+'</small><p>'+a[5]+'</p><p>'+a[6]+'</p>'+pairs([['매매 평가액',money(p)],['분기 영업현금',money(s.noi[sel]/4-(a[2]==='토지'?p*.002:0))],['즉시 매각가',money(quote(sel))],...(o?[['담보대출 잔액',money(o.d)]]:[['필요 자기자본',money(p*(loan==='현금'?1:.4))]])])+(o?'':'<label>자금 조달<select id="fund"><option>현금</option><option value="변동">변동 대출 60% · '+(s.rate+1.8).toFixed(2)+'%</option><option value="고정">고정 대출 60% · '+(s.rate+2.3).toFixed(2)+'%</option></select></label>')+'<button class="primary wide" onclick="trade()" '+(!allow||!s.ap||s.developed?.includes(sel)?'disabled':'')+'>'+(o?'즉시 매각':'매수 확정')+' · 행동력 1</button>'+(o?.d?'<button class="wide" onclick="repay()">가용 현금으로 상환</button>':'')+(o&&a[2]==='토지'?'<button class="wide" onclick="develop()">PF 개발 착수</button>':'');if($('fund')){$('fund').value=loan;$('fund').onchange=e=>{loan=e.target.value;render()}}}
-else $('side').innerHTML='<span class="kicker">DIRECTOR’S NOTE</span><h2>'+(s.done?'결산 토론':'대표 수첩')+'</h2><p>'+(s.done?'같은 부동산을 현금으로 산 팀과 대출로 산 팀의 최종 손익은 어떻게 달라졌나요?':'“다음 분기 이자부터 계산해 보세요. 팔기 전까지 평가차익은 현금으로 쓸 수 없습니다.”')+'</p>'+pairs([['보유 부동산',Object.keys(s.own).length+'건'],['일반 담보대출',money(debt())],['PF 대출',money(s.pf?.draw||0)]]);
+if(tab==='거래소'){$('side').innerHTML='<span class="kicker">매물 조사 · '+String(sel+1).padStart(2,'0')+'</span><h2>'+a[0]+'</h2><small>'+a[1]+' · '+a[2]+' · '+(o?'보유 자산':s.developed?.includes(sel)?'개발 출자 완료':'매수 가능')+'</small><p>'+a[5]+'</p><p>'+a[6]+'</p>'+pairs([['매매 평가액',money(p)],['분기 영업현금',money(s.noi[sel]/4-(a[2]==='토지'?p*.002:0))],['즉시 매각가',money(quote(sel))],...(o?[['담보대출 잔액',money(o.d)]]:[['필요 자기자본',money(p*(loan==='현금'?1:.4))]])])+(o?'':'<label>자금 조달<select id="fund"><option>현금</option><option value="변동">변동 대출 60% · '+(s.rate+1.8).toFixed(2)+'%</option><option value="고정">고정 대출 60% · '+(s.rate+2.3).toFixed(2)+'%</option></select></label>')+'<button class="primary wide" onclick="trade()" '+(!allow||!s.ap||s.developed?.includes(sel)?'disabled':'')+'>'+(o?'즉시 매각':'매수 확정')+' · 행동력 1</button>'+(o?.d?'<button class="wide" onclick="repay()">가용 현금으로 상환</button>':'')+(o&&a[2]==='토지'?'<button class="wide" onclick="develop()">PF 개발 착수</button>':'');if($('fund')){$('fund').value=loan;$('fund').onchange=e=>{loan=e.target.value;render()}}}
+else $('side').innerHTML='<span class="kicker">대표 수첩</span><h2>'+(s.done?'결산 토론':'대표 수첩')+'</h2><p>'+(s.done?'같은 부동산을 현금으로 산 팀과 대출로 산 팀의 최종 손익은 어떻게 달라졌나요?':'“다음 분기 이자부터 계산해 보세요. 팔기 전까지 평가차익은 현금으로 쓸 수 없습니다.”')+'</p>'+pairs([['보유 부동산',Object.keys(s.own).length+'건'],['일반 담보대출',money(debt())],['PF 대출',money(s.pf?.draw||0)]]);
 $('msg').textContent=message;$('sources').innerHTML='최근 조회 자료 · <a href="https://data.bis.org/topics/CBPOL">BIS / 한국은행</a> '+obs.rd+' 기준금리 '+obs.rate+'% · <a href="https://frankfurter.dev/">Frankfurter / ECB</a> '+obs.fd+' 일별 환율 '+obs.fx+'원. 실행 시 최신 공표값을 조회하며 연결 실패 시 내장 관측값을 사용합니다. 이번 판 시작값은 금리 '+s.base.rate+'%, 환율 '+s.base.fx+'원입니다. 분기별 변동은 수업용 시나리오입니다.'}
 function selectAsset(i){if(s.done)return;tab='거래소';sel=i;loan='현금';render();if(innerWidth<781)$('side').scrollIntoView({behavior:'smooth'})}
 const roomPattern=/^[A-Z0-9-]{3,32}$/;
