@@ -1,0 +1,19 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /classes/{room}/finishers/{uid} {
+      function inRoom() {
+        return request.auth != null && room.matches('[A-Z0-9-]{3,32}');
+      }
+      allow read: if inRoom();
+      allow create: if inRoom() && request.auth.uid == uid
+        && request.resource.data.keys().hasOnly(['company','amount','quarter','finishedAt'])
+        && request.resource.data.company is string
+        && request.resource.data.company.size() > 0
+        && request.resource.data.company.size() <= 30
+        && request.resource.data.amount is int
+        && request.resource.data.quarter == 12
+        && request.resource.data.finishedAt == request.time;
+    }
+  }
+}

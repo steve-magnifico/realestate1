@@ -1,8 +1,8 @@
 <!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>땅의 연대기 | 해온 투자 장부</title><style>
 :root{--paper:#f7f5ef;--ink:#242521;--soft:#68685e;--red:#842e36;--line:#d5d0c3;--serif:Georgia,'Nanum Myeongjo','Batang',serif}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.6 'DM Sans',system-ui,sans-serif}button,input,select{font:inherit}button{cursor:pointer;color:inherit;background:transparent;border:1px solid var(--line);padding:8px 15px;border-radius:3px}button:hover,button:focus-visible{border-color:var(--red);color:var(--red)}button:disabled{opacity:.48;cursor:default}header,main,footer{max-width:1300px;margin:auto;padding:0 5%}.mast{display:flex;justify-content:space-between;align-items:center;border-bottom:3px double var(--ink);padding:24px 0 16px}.mast strong{font:900 clamp(32px,4vw,55px)/1.2 var(--serif);letter-spacing:-.08em}.mast small{display:block;color:var(--red);font:700 10px Georgia;letter-spacing:.22em;margin-bottom:5px}.meta{text-align:right;font-size:13px}.meta b{font-family:Georgia;font-size:21px}.strip{display:flex;gap:22px;align-items:center;border-bottom:1px solid var(--line);padding:9px 0;font-size:12px;color:var(--soft);flex-wrap:wrap}.strip strong{color:var(--red)}.intro{padding:28px 0 20px;display:flex;justify-content:space-between;align-items:center;gap:15px}h1,h2,h3{font-family:var(--serif);margin:0;letter-spacing:-.055em}h1{font-size:34px}p{margin:6px 0 13px}small,.muted{color:var(--soft)}.stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:2px solid var(--ink);border-bottom:1px solid var(--line);padding:16px 0}.stat{padding:0 22px;border-left:1px solid var(--line)}.stat:first-child{padding-left:0;border:0}.stat small{display:block}.stat b{font:700 clamp(20px,2.4vw,34px) Georgia}.stat span{font-size:13px}.cols{display:grid;grid-template-columns:minmax(0,1.8fr) minmax(270px,1fr);gap:30px;margin:24px 0}.tabs{display:flex;gap:20px;border-bottom:1px solid var(--ink);margin-bottom:18px}.tabs button{border:none;border-bottom:3px solid transparent;border-radius:0;padding:8px 0;font-weight:700}.tabs .active{border-color:var(--red);color:var(--red)}table{width:100%;border-collapse:collapse;text-align:left}td,th{padding:12px 8px;border-bottom:1px solid var(--line)}th{color:var(--soft);font-size:12px}td:last-child,th:last-child{text-align:right}.pick{border:0;text-align:left;padding:0;font-weight:700}.pick small{display:block;font-weight:400}.chosen{background:#eee8de}.tag{font-size:12px;color:var(--red)}aside{background:#eeebe2;border-top:3px solid var(--red);align-self:start;padding:20px 23px}.kicker{font:700 12px Georgia;color:var(--red);letter-spacing:.13em}aside h2{font-size:29px;margin:4px 0}dl{margin:15px 0}dl div{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);padding:6px 0}dt{color:var(--soft)}dd{margin:0;text-align:right;font-variant-numeric:tabular-nums}.primary{background:var(--red);border-color:var(--red);color:white;font-weight:700}.primary:hover,.primary:focus-visible{color:white;background:#64222a}.wide{width:100%;margin-top:8px}select{width:100%;padding:8px;border:1px solid var(--line);background:var(--paper)}.notice{color:var(--red);font-weight:600;font-size:14px}.news{border-left:3px solid var(--red);padding-left:12px;margin:0 0 12px}.entry{border-bottom:1px solid var(--line);padding:10px 0}footer{padding-bottom:25px;font-size:12px;color:var(--soft)}footer details{border-top:1px solid var(--ink);padding:13px 0}summary{cursor:pointer}a{color:var(--red)}@media(max-width:780px){.cols{grid-template-columns:1fr;gap:16px}.stat{padding:0 8px}.intro{align-items:flex-start}.intro p{font-size:13px}.tabs{gap:15px}.strip{gap:8px}.mast{padding-top:16px}.cols:has(.chosen) aside{scroll-margin-top:10px}td,th{padding:8px 4px}}
 .inventory{margin-top:22px;border-bottom:1px solid var(--line);padding-bottom:12px}.inventory h2{font-size:24px}.inventory .muted{font-size:13px}.table-scroll{overflow-x:auto}.inventory td:not(:first-child),.inventory th:not(:first-child){text-align:right;white-space:nowrap}.inventory td{font-variant-numeric:tabular-nums}.company-form{margin:0 0 20px}.company-form label{display:block;font-weight:700;margin-bottom:4px}.company-form input{width:min(100%,340px);padding:8px 10px;background:var(--paper);border:1px solid var(--line);border-radius:3px;color:var(--ink)}[hidden]{display:none!important}
-</style>
-<header><div class="mast"><div><small>HAEON INVESTMENT JOURNAL</small><strong>땅의 연대기</strong></div><div class="meta"><span id="company-title">해온시 투자 장부</span><br><b id="issue"></b></div></div><div id="ticker" class="strip"></div></header><main><div class="intro"><div><h1 id="headline"></h1><p id="brief" class="muted"></p></div><button id="next" class="primary"></button></div><form id="company-form" class="company-form"><label for="company">회사 이름</label><input id="company" required maxlength="30" placeholder="예: 해온개발" autocomplete="organization"></form><div id="stats" class="stats"></div><section class="inventory" aria-labelledby="inventory-title"><h2 id="inventory-title">보유 부동산</h2><div id="inventory"></div></section><div class="cols"><section><nav class="tabs" id="tabs"></nav><div id="panel"></div></section><aside id="side"></aside></div><p id="msg" role="status" class="notice"></p></main><footer><p><a href="./index.html" download="해온시-부동산-투자게임.html">수업 배포용 게임 파일 내려받기</a></p><details><summary>수업 진행법 · 시장 데이터 출처</summary><p>도입 2분, 분기당 80초씩 12분기, 결산 토론 2분입니다. 거래소 매물은 매 분기 갱신됩니다. 매수·매도·개발·이벤트는 행동력 1을 씁니다. 잔여 행동력을 남기고 조기 결산할 수 있습니다. 매수 전 대출 방식을 선택하세요. 종료 시 모든 부동산을 즉시 매각가로 평가합니다. 이 기기에 자동 저장됩니다.</p><p id="sources"></p></details></footer>
+dialog{width:min(560px,92vw);border:1px solid var(--line);border-top:3px solid var(--red);padding:22px;background:var(--paper);color:var(--ink);max-height:85vh}dialog::backdrop{background:#25252088}dialog table{margin:12px 0}dialog td{overflow-wrap:anywhere}.board-actions{display:flex;flex-wrap:wrap;gap:8px}</style>
+<header><div class="mast"><div><small>HAEON INVESTMENT JOURNAL</small><strong>땅의 연대기</strong></div><div class="meta"><span id="company-title">해온시 투자 장부</span><br><b id="issue"></b></div></div><div id="ticker" class="strip"></div></header><main><div class="intro"><div><h1 id="headline"></h1><p id="brief" class="muted"></p></div><div class="board-actions"><button id="board-open">수업 순위표</button><button id="next" class="primary"></button></div></div><form id="company-form" class="company-form"><label for="company">회사 이름</label><input id="company" required maxlength="30" placeholder="예: 해온개발" autocomplete="organization"><label for="room">수업 코드 (선택)</label><input id="room" maxlength="32" placeholder="예: ECON-01" autocomplete="off"></form><div id="stats" class="stats"></div><section class="inventory" aria-labelledby="inventory-title"><h2 id="inventory-title">보유 부동산</h2><div id="inventory"></div></section><div class="cols"><section><nav class="tabs" id="tabs"></nav><div id="panel"></div></section><aside id="side"></aside></div><p id="msg" role="status" class="notice"></p></main><dialog id="board" aria-labelledby="board-title"><h2 id="board-title">완주 순위표</h2><p id="board-room"></p><form id="join-board"><label>수업 코드 <input id="join-code" required maxlength="32"></label> <button>수업 선택</button></form><p id="board-status" role="status"></p><p id="board-post" role="status"></p><table><thead><tr><th>순위</th><th>회사</th><th>최종 청산 순자산</th></tr></thead><tbody id="board-body"></tbody></table><div class="board-actions"><button id="board-retry">다시 연결</button><button id="board-close">닫기</button></div></dialog><footer><p><a href="./index.html" download="해온시-부동산-투자게임.html">수업 배포용 게임 파일 내려받기</a></p><details><summary>수업 진행법 · 시장 데이터 출처</summary><p>도입 2분, 분기당 80초씩 12분기, 결산 토론 2분입니다. 거래소 매물은 매 분기 갱신됩니다. 매수·매도·개발·이벤트는 행동력 1을 씁니다. 잔여 행동력을 남기고 조기 결산할 수 있습니다. 매수 전 대출 방식을 선택하세요. 종료 시 모든 부동산을 즉시 매각가로 평가합니다. 이 기기에 자동 저장됩니다.</p><p id="sources"></p></details></footer>
 <script>
 const $=id=>document.getElementById(id), money=n=>n.toFixed(2)+'억', key='haeon-ledger-v1';
 const totalQuarters=12, quarterMs=80000, projectQuarters=3;
@@ -50,6 +50,9 @@ function start(){
   if(s.started||s.done)return;
   const name=$('company').value.trim();
   if(!name){message='회사 이름을 입력해 주세요.';render();$('company').focus();return}
+  const room=parseRoom($('room').value);
+  if(room&&!roomPattern.test(room)){message='수업 코드는 영문·숫자·하이픈 3~32자로 입력하세요.';render();$('room').focus();return}
+  s.room=room;
   s.company=name;
   s.base={...obs};s.rate=obs.rate;s.fx=obs.fx;s.started=true;
   s.end=Date.now()+quarterMs;
@@ -74,7 +77,7 @@ for(const {i,o,income,interest,openingValue} of cashResults){
   o.results[s.q]=income-interest+s.prices[i]-openingValue;
 }
 if(s.pf){let p=s.pf;p.age++;p.draw+=2;p.cost+=2*s.fx/p.fx;p.int+=p.draw*(s.rate+3)/400;if(p.age===projectQuarters){let sale=(p.land+7)*1.16*(1+g),projectCash=1+p.draw-p.cost,received=Math.max(0,sale*.98+projectCash-p.draw-p.int);s.cash+=received;s.pfGain+=received-p.equity;record('PF 준공·매각. 공사비 '+money(p.cost)+' · 원리금 '+money(p.draw+p.int)+' · 출자자 회수 '+money(received));s.pf=null}}
-record('영업현금 '+money(amt)+' · 대출이자 '+money(it)+' · 예금이자 '+money(deposit));if(s.q===totalQuarters){s.done=true;tab='결산'}else{s.q++;s.ap=2;s.event=false;s.end=Date.now()+quarterMs;if([3,6].includes(s.q))tab='특별 계약'}save();render()}
+record('영업현금 '+money(amt)+' · 대출이자 '+money(it)+' · 예금이자 '+money(deposit));if(s.q===totalQuarters){s.done=true;tab='결산'}else{s.q++;s.ap=2;s.event=false;s.end=Date.now()+quarterMs;if([3,6].includes(s.q))tab='특별 계약'}save();render();if(s.done)openBoard()}
 const pairs=a=>'<dl>'+a.map(([k,v])=>'<div><dt>'+k+'</dt><dd>'+v+'</dd></div>').join('')+'</dl>';
 function displayTime(){let sec=s.started?Math.max(0,Math.ceil((s.end-Date.now())/1000)):quarterMs/1000;$('issue').textContent=s.done?'최종 결산':'Q'+String(s.q).padStart(2,'0')+' / '+totalQuarters;return Math.floor(sec/60)+':'+String(sec%60).padStart(2,'0')}
 const signedMoney=n=>(n>0?'+':'')+money(n);
@@ -113,6 +116,92 @@ if(tab==='거래소'){$('side').innerHTML='<span class="kicker">PROPERTY FILE / 
 else $('side').innerHTML='<span class="kicker">DIRECTOR’S NOTE</span><h2>'+(s.done?'결산 토론':'대표 수첩')+'</h2><p>'+(s.done?'같은 부동산을 현금으로 산 팀과 대출로 산 팀의 최종 손익은 어떻게 달라졌나요?':'“다음 분기 이자부터 계산해 보세요. 팔기 전까지 평가차익은 현금으로 쓸 수 없습니다.”')+'</p>'+pairs([['보유 부동산',Object.keys(s.own).length+'건'],['일반 담보대출',money(debt())],['PF 대출',money(s.pf?.draw||0)]]);
 $('msg').textContent=message;$('sources').innerHTML='최근 조회 자료 · <a href="https://data.bis.org/topics/CBPOL">BIS / 한국은행</a> '+obs.rd+' 기준금리 '+obs.rate+'% · <a href="https://frankfurter.dev/">Frankfurter / ECB</a> '+obs.fd+' 일별 환율 '+obs.fx+'원. 실행 시 최신 공표값을 조회하며 연결 실패 시 내장 관측값을 사용합니다. 이번 판 시작값은 금리 '+s.base.rate+'%, 환율 '+s.base.fx+'원입니다. 분기별 변동은 수업용 시나리오입니다.'}
 function selectAsset(i){if(s.done)return;tab='거래소';sel=i;loan='현금';render();if(innerWidth<781)$('side').scrollIntoView({behavior:'smooth'})}
-$('next').onclick=()=>{if(s.done){s=fresh();tab='거래소';sel=0;loan='현금';$('company').value='';message='';save();render()}else if(!s.started)start();else closeTurn()};$('company-form').onsubmit=e=>{e.preventDefault();start()};render();setInterval(()=>{if(s.started&&!s.done){if(Date.now()>=s.end)closeTurn();else $('clock').textContent=displayTime()}},500);
+const roomPattern=/^[A-Z0-9-]{3,32}$/;
+let connection,stopBoard,boardVersion=0;
+const won=new Intl.NumberFormat('ko-KR',{style:'currency',currency:'KRW',maximumFractionDigits:0});
+function parseRoom(value){return value.trim().toUpperCase()}
+async function connectBoard(){
+  const configURL=location.protocol==='file:'?'https://steve-magnifico.github.io/realestate1/firebase-config.json':'./firebase-config.json';
+  const response=await fetch(configURL,{cache:'no-cache'});
+  if(!response.ok)throw Error('수업 순위표의 Firebase 설정을 확인해 주세요.');
+  const config=await response.json();
+  if(!config.projectId||!config.apiKey||!config.appId)throw Error('수업 순위표 연결 준비 중입니다. Firebase 웹 앱 설정이 필요합니다.');
+  const sdk='https://www.gstatic.com/firebasejs/10.14.1/';
+  const [appModule,authModule,dbModule]=await Promise.all(['firebase-app.js','firebase-auth.js','firebase-firestore.js'].map(file=>import(sdk+file)));
+  const app=appModule.getApps()[0]||appModule.initializeApp(config);
+  const auth=authModule.getAuth(app);
+  await auth.authStateReady();
+  const user=auth.currentUser||(await authModule.signInAnonymously(auth)).user;
+  return {db:dbModule.getFirestore(app),api:dbModule,uid:user.uid};
+}
+function drawBoard(records){
+  const body=$('board-body');body.replaceChildren();
+  records.sort((a,b)=>b.amount-a.amount||a.company.localeCompare(b.company,'ko'));
+  let rank=0;
+  records.forEach((entry,i)=>{
+    if(!i||entry.amount!==records[i-1].amount)rank=i+1;
+    const row=body.insertRow();
+    for(const value of [rank+'위',entry.company,won.format(entry.amount)])row.insertCell().textContent=value;
+  });
+  $('board-status').textContent=records.length?'완주 '+records.length+'팀 · 동점은 공동 순위':'아직 완주한 팀이 없습니다.';
+}
+function stopWatching(){
+  boardVersion++;
+  if(stopBoard){stopBoard();stopBoard=null}
+}
+async function openBoard(){
+  stopWatching();
+  const version=boardVersion,game=s;
+  const dialog=$('board');
+  if(!dialog.open)dialog.showModal();
+  const room=game.room||(!game.started&&parseRoom($('room').value));
+  $('board-room').textContent=room?'수업 '+room:'';
+  $('board-body').replaceChildren();
+  $('board-post').textContent='';
+  $('join-board').hidden=!!game.room;
+  if(!room||!roomPattern.test(room)){
+    $('board-status').textContent='수업 코드를 입력하면 이 수업의 완주 기록을 볼 수 있습니다.';
+    return;
+  }
+  $('board-status').textContent='순위표 연결 중…';
+  try{
+    connection??=connectBoard().catch(error=>{connection=null;throw error});
+    const {db,api,uid}=await connection;
+    if(version!==boardVersion||game!==s)return;
+    const scores=api.collection(db,'classes',room,'finishers');
+    stopBoard=api.onSnapshot(scores,snap=>{
+      if(version===boardVersion)drawBoard(snap.docs.map(d=>d.data()));
+    },()=>{if(version===boardVersion)$('board-status').textContent='순위표를 읽을 수 없습니다. 연결과 Firestore 권한을 확인한 뒤 다시 시도하세요.'});
+    if(!game.done||game.q!==totalQuarters||game.scorePosted)return;
+    $('board-post').textContent='최종 점수 제출 중…';
+    const ref=api.doc(scores,uid);
+    const score={company:game.company,amount:Math.round(worth()*100000000),quarter:totalQuarters};
+    const created=await api.runTransaction(db,async tx=>{
+      if((await tx.get(ref)).exists())return false;
+      tx.set(ref,{...score,finishedAt:api.serverTimestamp()});return true;
+    });
+    if(game===s){game.scorePosted=true;save()}
+    if(version===boardVersion)$('board-post').textContent=created?'완주 기록을 등록했습니다.':'이 수업에 이미 등록된 첫 완주 기록을 표시합니다.';
+  }catch(error){
+    if(version!==boardVersion)return;
+    $('board-post').textContent='';
+    $('board-status').textContent=error.message?.startsWith('수업 순위표')?error.message:'연결 또는 점수 제출에 실패했습니다. 네트워크·익명 로그인·Firestore 규칙을 확인한 뒤 다시 시도하세요.';
+  }
+}
+$('board-open').onclick=openBoard;
+$('board-close').onclick=()=>$('board').close();
+$('board').onclose=stopWatching;
+$('board-retry').onclick=openBoard;
+$('join-board').onsubmit=e=>{
+  e.preventDefault();
+  const room=parseRoom($('join-code').value);
+  if(!roomPattern.test(room)){ $('board-status').textContent='영문·숫자·하이픈 3~32자로 입력하세요.';return }
+  if(s.started){s.room=room;save()}
+  $('room').value=room;
+  
+  openBoard();
+};
+
+$('next').onclick=()=>{if(s.done){s=fresh();tab='거래소';sel=0;loan='현금';$('company').value='';message='';save();render()}else if(!s.started)start();else closeTurn()};$('company-form').onsubmit=e=>{e.preventDefault();start()};render();if(s.done&&s.q===totalQuarters&&!s.scorePosted)openBoard();setInterval(()=>{if(s.started&&!s.done){if(Date.now()>=s.end)closeTurn();else $('clock').textContent=displayTime()}},500);
 async function loadMarkets(){await Promise.allSettled([fetch('https://api.frankfurter.dev/v1/latest?base=USD&symbols=KRW').then(r=>r.json()).then(j=>{if(j.rates.KRW>0&&/^\d{4}-\d{2}-\d{2}$/.test(j.date)){obs.fx=Number(j.rates.KRW);obs.fd=j.date}}),fetch('https://stats.bis.org/api/v1/data/WS_CBPOL/D.KR?lastNObservations=1&format=csv').then(r=>r.text()).then(t=>{let m=t.match(/,(\d{4}-\d{2}-\d{2}),([\d.]+),[A-Z],/);if(m){obs.rate=+m[2];obs.rd=m[1]}})]);if(!s.started){s.base={...obs};s.rate=obs.rate;s.fx=obs.fx}render()}loadMarkets();
 </script></html>
