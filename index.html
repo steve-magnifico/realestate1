@@ -1,0 +1,118 @@
+<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>땅의 연대기 | 해온 투자 장부</title><style>
+:root{--paper:#f7f5ef;--ink:#242521;--soft:#68685e;--red:#842e36;--line:#d5d0c3;--serif:Georgia,'Nanum Myeongjo','Batang',serif}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.6 'DM Sans',system-ui,sans-serif}button,input,select{font:inherit}button{cursor:pointer;color:inherit;background:transparent;border:1px solid var(--line);padding:8px 15px;border-radius:3px}button:hover,button:focus-visible{border-color:var(--red);color:var(--red)}button:disabled{opacity:.48;cursor:default}header,main,footer{max-width:1300px;margin:auto;padding:0 5%}.mast{display:flex;justify-content:space-between;align-items:center;border-bottom:3px double var(--ink);padding:24px 0 16px}.mast strong{font:900 clamp(32px,4vw,55px)/1.2 var(--serif);letter-spacing:-.08em}.mast small{display:block;color:var(--red);font:700 10px Georgia;letter-spacing:.22em;margin-bottom:5px}.meta{text-align:right;font-size:13px}.meta b{font-family:Georgia;font-size:21px}.strip{display:flex;gap:22px;align-items:center;border-bottom:1px solid var(--line);padding:9px 0;font-size:12px;color:var(--soft);flex-wrap:wrap}.strip strong{color:var(--red)}.intro{padding:28px 0 20px;display:flex;justify-content:space-between;align-items:center;gap:15px}h1,h2,h3{font-family:var(--serif);margin:0;letter-spacing:-.055em}h1{font-size:34px}p{margin:6px 0 13px}small,.muted{color:var(--soft)}.stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:2px solid var(--ink);border-bottom:1px solid var(--line);padding:16px 0}.stat{padding:0 22px;border-left:1px solid var(--line)}.stat:first-child{padding-left:0;border:0}.stat small{display:block}.stat b{font:700 clamp(20px,2.4vw,34px) Georgia}.stat span{font-size:13px}.cols{display:grid;grid-template-columns:minmax(0,1.8fr) minmax(270px,1fr);gap:30px;margin:24px 0}.tabs{display:flex;gap:20px;border-bottom:1px solid var(--ink);margin-bottom:18px}.tabs button{border:none;border-bottom:3px solid transparent;border-radius:0;padding:8px 0;font-weight:700}.tabs .active{border-color:var(--red);color:var(--red)}table{width:100%;border-collapse:collapse;text-align:left}td,th{padding:12px 8px;border-bottom:1px solid var(--line)}th{color:var(--soft);font-size:12px}td:last-child,th:last-child{text-align:right}.pick{border:0;text-align:left;padding:0;font-weight:700}.pick small{display:block;font-weight:400}.chosen{background:#eee8de}.tag{font-size:12px;color:var(--red)}aside{background:#eeebe2;border-top:3px solid var(--red);align-self:start;padding:20px 23px}.kicker{font:700 12px Georgia;color:var(--red);letter-spacing:.13em}aside h2{font-size:29px;margin:4px 0}dl{margin:15px 0}dl div{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line);padding:6px 0}dt{color:var(--soft)}dd{margin:0;text-align:right;font-variant-numeric:tabular-nums}.primary{background:var(--red);border-color:var(--red);color:white;font-weight:700}.primary:hover,.primary:focus-visible{color:white;background:#64222a}.wide{width:100%;margin-top:8px}select{width:100%;padding:8px;border:1px solid var(--line);background:var(--paper)}.notice{color:var(--red);font-weight:600;font-size:14px}.news{border-left:3px solid var(--red);padding-left:12px;margin:0 0 12px}.entry{border-bottom:1px solid var(--line);padding:10px 0}footer{padding-bottom:25px;font-size:12px;color:var(--soft)}footer details{border-top:1px solid var(--ink);padding:13px 0}summary{cursor:pointer}a{color:var(--red)}@media(max-width:780px){.cols{grid-template-columns:1fr;gap:16px}.stat{padding:0 8px}.intro{align-items:flex-start}.intro p{font-size:13px}.tabs{gap:15px}.strip{gap:8px}.mast{padding-top:16px}.cols:has(.chosen) aside{scroll-margin-top:10px}td,th{padding:8px 4px}}
+.inventory{margin-top:22px;border-bottom:1px solid var(--line);padding-bottom:12px}.inventory h2{font-size:24px}.inventory .muted{font-size:13px}.table-scroll{overflow-x:auto}.inventory td:not(:first-child),.inventory th:not(:first-child){text-align:right;white-space:nowrap}.inventory td{font-variant-numeric:tabular-nums}.company-form{margin:0 0 20px}.company-form label{display:block;font-weight:700;margin-bottom:4px}.company-form input{width:min(100%,340px);padding:8px 10px;background:var(--paper);border:1px solid var(--line);border-radius:3px;color:var(--ink)}[hidden]{display:none!important}
+</style>
+<header><div class="mast"><div><small>HAEON INVESTMENT JOURNAL</small><strong>땅의 연대기</strong></div><div class="meta"><span id="company-title">해온시 투자 장부</span><br><b id="issue"></b></div></div><div id="ticker" class="strip"></div></header><main><div class="intro"><div><h1 id="headline"></h1><p id="brief" class="muted"></p></div><button id="next" class="primary"></button></div><form id="company-form" class="company-form"><label for="company">회사 이름</label><input id="company" required maxlength="30" placeholder="예: 해온개발" autocomplete="organization"></form><div id="stats" class="stats"></div><section class="inventory" aria-labelledby="inventory-title"><h2 id="inventory-title">보유 부동산</h2><div id="inventory"></div></section><div class="cols"><section><nav class="tabs" id="tabs"></nav><div id="panel"></div></section><aside id="side"></aside></div><p id="msg" role="status" class="notice"></p></main><footer><p><a href="./index.html" download="해온시-부동산-투자게임.html">수업 배포용 게임 파일 내려받기</a></p><details><summary>수업 진행법 · 시장 데이터 출처</summary><p>도입 2분, 분기당 80초씩 12분기, 결산 토론 2분입니다. 거래소 매물은 매 분기 갱신됩니다. 매수·매도·개발·이벤트는 행동력 1을 씁니다. 잔여 행동력을 남기고 조기 결산할 수 있습니다. 매수 전 대출 방식을 선택하세요. 종료 시 모든 부동산을 즉시 매각가로 평가합니다. 이 기기에 자동 저장됩니다.</p><p id="sources"></p></details></footer>
+<script>
+const $=id=>document.getElementById(id), money=n=>n.toFixed(2)+'억', key='haeon-ledger-v1';
+const totalQuarters=12, quarterMs=80000, projectQuarters=3;
+const assets=[
+['해온역 동측 필지','역세권','토지',3,.0,'역세권 개발 기대와 금리','개발 가능 용적률 400%. PF 사업에 출자할 수 있습니다.'],
+['남항 물류공장','산업단지','공장',5.2,.074,'수출 수주와 환율','수출 물류업체가 임차 중입니다. 원화 약세 때 가동률이 오릅니다.'],
+['중앙로 업무빌딩','구도심','오피스',6.4,.065,'공실률과 환원율','지역 고용이 늘면 공실이 줄고 임대수익이 개선됩니다.'],
+['솔마루 아파트','신도시','아파트',4.1,.036,'가구 유입과 입주 물량','학군 수요가 있지만 인근 대단지의 입주를 앞두고 있습니다.'],
+['서문시장 부지','구도심','토지',2.2,0,'재생사업과 금리','상업지역 재생 계획에 포함된 개발 후보지입니다.'],
+['동해 정밀공장','산업단지','공장',4.7,.078,'수입 원가와 환율','원자재 수입 의존도가 높아 원화 약세 때 임차 수요가 줄어듭니다.'],
+['해온역 타워','역세권','오피스',8.2,.06,'고용과 환원율','역 접근성이 좋아 공실 충격이 비교적 작습니다.'],
+['강변 주공','구도심','아파트',3.6,.041,'대출금리와 주거 수요','기존 생활권의 고정 수요 덕분에 입주 물량 충격이 작습니다.'],
+['해온항 배후 부지','산업단지','토지',2.8,0,'항만 접근성과 금리','배후 물류단지 확장 후보지입니다.'],
+['서부 조립공장','산업단지','공장',5.7,.076,'수입 원가와 환율','수입 부품을 사용하는 조립업체가 임차 중입니다.'],
+['시청 앞 업무센터','구도심','오피스',5.8,.069,'지역 고용과 환원율','도심의 중소기업을 주 임차인으로 두고 있습니다.'],
+['푸른뜰 아파트','신도시','아파트',4.5,.037,'가구 유입과 주택대출 금리','신도시의 신규 주거 단지입니다.']];
+const scenarios=[
+['해온역 개발안이 시의회에 상정됐습니다.',0,0,.01],['산업단지 수출 주문이 늘었습니다.',0,.025,.024],['역 신설 후보지가 두 곳으로 좁혀졌습니다.',.25,.012,.015],['대출 심사가 강화되고 기업 채용이 줄었습니다.',.25,-.016,-.023],['신도시 대단지 입주가 시작됐습니다.',0,.018,-.01],['도시재생 예산과 기업 이전 계획이 발표됐습니다.',-.25,-.012,.026],['고용이 회복되고 역세권 임차 수요가 늘었습니다.',-.25,.008,.02],['연말 거래량이 줄고 급매 호가가 형성됐습니다.',0,-.01,-.008],
+['항만 배후단지 사업이 확정되고 신규 임차 문의가 늘었습니다.',-.25,.014,.021],
+['수입 자재비 상승과 금리 인상으로 개발 수익성이 낮아졌습니다.',.5,.035,-.019],
+['기업 투자가 재개되고 도심 업무시설의 공실이 줄었습니다.',0,-.025,.028],
+['주택 공급이 안정되면서 거래량이 회복됐습니다.',-.25,-.008,.013]];
+let obs={rate:3,rd:'2026-11-02',fx:1336.21,fd:'2026-11-17'},s,tab='거래소',sel=0,loan='현금',message='';
+function fresh(){return {company:"",q:1,ap:2,cash:10,rate:obs.rate,fx:obs.fx,base:{...obs},prices:assets.map(a=>a[3]),noi:assets.map(a=>a[3]*a[4]),own:{},developed:[],pf:null,event:false,started:false,done:false,end:0,log:[],seed:Math.floor(Math.random()*4294967296),rent:0,interest:0,eventGain:0,pfGain:0}}
+try{s=JSON.parse(localStorage.getItem(key))||fresh()}catch{s=fresh()}
+s.company ??= s.started ? '해온개발' : '';
+for (let i=s.prices.length; i<assets.length; i++){
+  s.prices.push(assets[i][3]);
+  s.noi.push(assets[i][3]*assets[i][4]);
+}
+if(s.done)tab='결산';
+
+function listings(){
+  const offers=[];
+  for(let offset=0;offset<assets.length && offers.length<8;offset++){
+    const i=(s.q-1+offset)%assets.length;
+    if(!s.own[i]&&!s.developed?.includes(i))offers.push(i);
+  }
+  return offers;
+}
+function save(){try{localStorage.setItem(key,JSON.stringify(s))}catch{}}
+function record(t){s.log.unshift('제'+s.q+'분기 · '+t);message=t}
+const quote=i=>s.prices[i]*(assets[i][2]==='토지'?.94:.97),debt=()=>Object.values(s.own).reduce((n,o)=>n+o.d,0),worth=()=>s.cash+Object.keys(s.own).reduce((n,i)=>n+quote(+i),0)-debt()+(s.pf?s.pf.equity:0);
+function start(){
+  if(s.started||s.done)return;
+  const name=$('company').value.trim();
+  if(!name){message='회사 이름을 입력해 주세요.';render();$('company').focus();return}
+  s.company=name;
+  s.base={...obs};s.rate=obs.rate;s.fx=obs.fx;s.started=true;
+  s.end=Date.now()+quarterMs;
+  record('대표 취임. 투자 자본 10억 원.');save();render();
+}
+function random(){s.seed=(Math.imul(s.seed,1664525)+1013904223)>>>0;return s.seed/4294967296}
+function act(fn){if(!s.started||s.done)return;if(Date.now()>=s.end){closeTurn();return}const err=fn();if(err)message=err;save();render()}
+function trade(){act(()=>{if(!s.ap)return '이번 분기 행동력을 모두 썼습니다.';if(s.developed?.includes(sel))return "개발에 출자된 필지입니다.";let o=s.own[sel],p=s.prices[sel];if(o){s.cash+=quote(sel)-o.d;delete s.own[sel];record(assets[sel][0]+' 매각 및 담보대출 정산.')}else{if(!listings().includes(sel))return '이번 분기 거래소에 등록된 매물이 아닙니다.';let d=loan==='현금'?0:p*.6;if(s.cash<p-d)return '매입에 필요한 현금이 부족합니다.';s.cash-=p-d;s.own[sel]={d,fixed:loan==='고정',r:s.rate+2.3,results:{}};record(assets[sel][0]+' 매수. 자기자본 '+money(p-d)+' 투입.')}s.ap--})}
+function repay(){act(()=>{let o=s.own[sel];if(!o||!o.d)return;let pay=Math.min(Math.max(0,s.cash),o.d);o.d-=pay;s.cash-=pay;record('담보대출 '+money(pay)+' 상환.')})}
+function develop(){act(()=>{let o=s.own[sel];if(!o||assets[sel][2]!=='토지'||o.d||s.pf||!s.ap||s.q>totalQuarters-projectQuarters+1||s.cash<1)return '무담보 토지, 현금 1억, 행동력 1이 필요합니다. 착수 기한은 10분기입니다.';let land=s.prices[sel];(s.developed??=[]).push(sel);s.pf={land,equity:land+1,age:0,draw:0,int:0,cost:0,fx:s.fx};delete s.own[sel];s.cash--;s.ap--;record('토지 현물 및 현금 1억 출자. PF 한도 6억 승인.');tab='개발 PF'})}
+function chance(){act(()=>{if(![3,6].includes(s.q)||s.event||!s.ap||s.cash<.3)return '참여 조건을 확인하세요.';let win=random()<(s.q===3?.4:.55),net=win?(s.q===3?.75:.45):-.3;s.cash+=net;s.eventGain+=net;s.ap--;s.event=true;record((win?'계약 성사':'계약 무산')+' · 순손익 '+money(net))})}
+function closeTurn(){if(s.done||!s.started)return;let [,dr,df,g]=scenarios[s.q-1];let amt=0,it=0;
+const cashResults=Object.entries(s.own).map(([i,o])=>{
+  const income=s.noi[i]/4-(assets[i][2]==='토지'?s.prices[i]*.002:0);
+  const interest=o.d*(o.fixed?o.r:s.rate+1.8)/400;
+  amt+=income;it+=interest;
+  return {i,o,income,interest,openingValue:s.prices[i]};
+});let deposit=Math.max(0,s.cash)*Math.max(0,s.rate-1)/400;s.cash+=amt-it+deposit;s.rent+=amt;s.interest+=it;s.rate+=dr;s.fx*=1+df;
+assets.forEach((a,i)=>{let t=a[2];if(t==='공장'||t==='오피스'){s.noi[i]*=1+g*(i===6?.5:1)+(t==='공장'?df*(i===1?1:-1):0);s.prices[i]=s.noi[i]/Math.max(.03,a[4]+(s.rate-s.base.rate)/130)}else{s.prices[i]*=1+g*(t==='토지'?1.7:1)-dr*.025+(t==='아파트'&&s.q===5?(i===3?-.08:-.025):0)}});
+for(const {i,o,income,interest,openingValue} of cashResults){
+  o.results??={};
+  o.results[s.q]=income-interest+s.prices[i]-openingValue;
+}
+if(s.pf){let p=s.pf;p.age++;p.draw+=2;p.cost+=2*s.fx/p.fx;p.int+=p.draw*(s.rate+3)/400;if(p.age===projectQuarters){let sale=(p.land+7)*1.16*(1+g),projectCash=1+p.draw-p.cost,received=Math.max(0,sale*.98+projectCash-p.draw-p.int);s.cash+=received;s.pfGain+=received-p.equity;record('PF 준공·매각. 공사비 '+money(p.cost)+' · 원리금 '+money(p.draw+p.int)+' · 출자자 회수 '+money(received));s.pf=null}}
+record('영업현금 '+money(amt)+' · 대출이자 '+money(it)+' · 예금이자 '+money(deposit));if(s.q===totalQuarters){s.done=true;tab='결산'}else{s.q++;s.ap=2;s.event=false;s.end=Date.now()+quarterMs;if([3,6].includes(s.q))tab='특별 계약'}save();render()}
+const pairs=a=>'<dl>'+a.map(([k,v])=>'<div><dt>'+k+'</dt><dd>'+v+'</dd></div>').join('')+'</dl>';
+function displayTime(){let sec=s.started?Math.max(0,Math.ceil((s.end-Date.now())/1000)):quarterMs/1000;$('issue').textContent=s.done?'최종 결산':'Q'+String(s.q).padStart(2,'0')+' / '+totalQuarters;return Math.floor(sec/60)+':'+String(sec%60).padStart(2,'0')}
+const signedMoney=n=>(n>0?'+':'')+money(n);
+
+function renderInventory(){
+  const last=s.done?s.q:s.q-1;
+  const year=Math.ceil(s.q/4);
+  const first=(year-1)*4+1;
+  const rows=Object.entries(s.own).map(([i,o])=>{
+    const results=o.results??{};
+    const yearResults=Object.entries(results).filter(([q])=>Number(q)>=first&&Number(q)<=last);
+    const ytd=yearResults.reduce((sum,[,value])=>sum+value,0);
+    const label=s.done?assets[i][0]:'<button class="pick" onclick="selectAsset('+i+')">'+assets[i][0]+'</button>';
+    return '<tr><td>'+label+'</td><td>'+money(s.prices[i])+'</td><td>'+money(o.d)+'</td><td>'+(results[last]===undefined?'—':signedMoney(results[last]))+'</td><td>'+(yearResults.length?signedMoney(ytd):'—')+'</td></tr>';
+  });
+  $('inventory').innerHTML='<div class="table-scroll"><table><thead><tr><th scope="col">부동산</th><th scope="col">공정가치</th><th scope="col">관련 부채</th><th scope="col">최근 분기 손익'+(last?' (Q'+last+')':'')+'</th><th scope="col">연간 누적 손익 ('+year+'년차)</th></tr></thead><tbody>'+
+    (rows.join('')||'<tr><td colspan="5" style="text-align:left">아직 보유 중인 부동산이 없습니다.</td></tr>')+
+    '</tbody></table></div><p class="muted">손익은 결산된 순영업현금에서 대출이자를 빼고 공정가치 변동을 더한 값입니다. 연간 누적은 현재 게임 연도의 결산분만 합산합니다. 결산 기록이 없으면 ‘—’로 표시합니다.</p>';
+}
+
+function render(){
+  let time=displayTime();
+  const offers=listings();
+  if(!s.own[sel]&&!offers.includes(sel)){sel=offers[0]??0;loan='현금'}
+  $('company-title').textContent=s.company||'해온시 투자 장부';
+  $('company-form').hidden=s.started||s.done;
+  renderInventory();$('ticker').innerHTML='<strong>경제 지표</strong><span>게임 기준금리 '+s.rate.toFixed(2)+'%</span><span>달러당 '+Math.round(s.fx).toLocaleString()+'원</span><span>실제 관측일 및 출처는 하단 참조</span>';$('headline').textContent=s.done?'최종 투자 결산':'제'+s.q+'분기 투자 장부';$('brief').textContent=s.done?'12분기 영업을 마쳤습니다. 수익을 가장 크게 바꾼 결정을 찾아보세요.':scenarios[s.q-1][0];$('next').textContent=s.done?'새 게임':!s.started?'게임 시작':'분기 결산 →';$('stats').innerHTML=[['가용 현금',s.cash.toFixed(2),'억 원'],['청산 순자산',worth().toFixed(2),'억 원'],['남은 행동력',s.done?'0':s.ap,' / 2'],['분기 남은 시간',s.done?'종료':time,'']].map(([k,v,u],i)=>'<div class="stat"><small>'+k+'</small><b '+(i===3?'id="clock"':'')+'>'+v+'</b> <span>'+u+'</span></div>').join('');
+let names=s.done?['결산','투자 기록']:['거래소','개발 PF','특별 계약','투자 기록'];$('tabs').innerHTML=names.map(n=>'<button class="'+(n===tab?'active':'')+'" onclick="tab=this.textContent;render()">'+n+'</button>').join('');let a=assets[sel],o=s.own[sel],p=s.prices[sel],allow=s.started&&!s.done;
+if(tab==='거래소'){$('panel').innerHTML='<p class=muted>제'+s.q+'분기 신규·기존 매물 '+offers.length+'건 · 보유 자산은 위 목록에서 선택</p><table><thead><tr><th>매물 · 소재지</th><th>유형</th><th>평가액</th></tr></thead><tbody>'+offers.map(i=>{const a=assets[i];return '<tr class="'+(i===sel?'chosen':'')+'"><td><button class="pick" onclick="selectAsset('+i+')">'+a[0]+'</button><small style="display:block">'+a[1]+(s.own[i]?' · 보유 중':'')+'</small></td><td>'+a[2]+'</td><td>'+money(s.prices[i])+'</td></tr>'}).join('')+(offers.length?'':'<tr><td colspan=3>이번 분기에 매수할 수 있는 매물이 없습니다.</td></tr>')+'</tbody></table>'}
+else if(tab==='개발 PF'){$('panel').innerHTML='<h2>토지 개발 사업</h2><p>무담보 토지 한 필지와 현금 1억을 출자합니다. 세 분기에 걸쳐 2억씩 인출하고, 준공 후 매각대금에서 원리금을 우선 상환합니다.</p>'+ (s.pf?pairs([['진행 공정',s.pf.age+' / 3분기'],['출자금',money(s.pf.equity)],['누적 공사비',money(s.pf.cost)],['PF 인출 잔액',money(s.pf.draw)],['누적 이자',money(s.pf.int)]]):'<p class="news">거래소에서 보유 토지를 선택하고 ‘PF 개발 착수’를 누르세요. 10분기까지 착수할 수 있습니다.</p>')+'<p>공사비는 착공 시점 대비 환율에 연동됩니다. PF 금리는 게임 기준금리 + 3%p입니다. 매각 수수료는 2%이며 자기자본을 초과하는 손실은 대주가 부담합니다.</p>'}
+else if(tab==='특별 계약'){let active=[3,6].includes(s.q);$('panel').innerHTML='<h2>'+(s.q===3?'막차역 매수권':s.q===6?'앵커 기업 유치권':'계약 일정')+'</h2><p>'+(active?'행동력 1과 계약금 0.30억 원을 투입합니다. 실패하면 계약금을 잃습니다.':'3분기에는 역 신설 후보지 매수권, 6분기에는 기업 유치 계약이 열립니다.')+'</p>'+(active?pairs([['계약 성사 확률',s.q===3?'40%':'55%'],['성공 시 순이익',s.q===3?'0.75억':'0.45억'],['실패 시 순손실','0.30억']])+'<button onclick="chance()" '+(s.event||!allow?'disabled':'')+'>'+(s.event?'참여 완료':'계약 참여')+'</button>':'')}
+else if(tab==='결산'){$('panel').innerHTML='<h2 id="income-title">손익계산서</h2>'+pairs([['최종 청산 순자산',money(worth())],['시작 자본 대비 손익',money(worth()-10)],['임대·보유 순현금',money(s.rent)],['차입 이자',money(-s.interest)],['개발사업 이익',money(s.pfGain)],['특별 계약 손익',money(s.eventGain)],['매매·평가손익 및 예금이자',money(worth()-10-s.rent+s.interest-s.pfGain-s.eventGain)]])}
+else $('panel').innerHTML='<h2>투자 기록</h2>'+(s.log.map(l=>'<div class="entry">'+l+'</div>').join('')||'<p>게임을 시작하면 거래 내역이 기록됩니다.</p>');
+if($('income-title'))$('income-title').textContent=s.company+' 손익계산서';
+if(tab==='거래소'){$('side').innerHTML='<span class="kicker">PROPERTY FILE / '+String(sel+1).padStart(2,'0')+'</span><h2>'+a[0]+'</h2><small>'+a[1]+' · '+a[2]+' · '+(o?'보유 자산':s.developed?.includes(sel)?'개발 출자 완료':'매수 가능')+'</small><p>'+a[5]+'</p><p>'+a[6]+'</p>'+pairs([['매매 평가액',money(p)],['분기 영업현금',money(s.noi[sel]/4-(a[2]==='토지'?p*.002:0))],['즉시 매각가',money(quote(sel))],...(o?[['담보대출 잔액',money(o.d)]]:[['필요 자기자본',money(p*(loan==='현금'?1:.4))]])])+(o?'':'<label>자금 조달<select id="fund"><option>현금</option><option value="변동">변동 대출 60% · '+(s.rate+1.8).toFixed(2)+'%</option><option value="고정">고정 대출 60% · '+(s.rate+2.3).toFixed(2)+'%</option></select></label>')+'<button class="primary wide" onclick="trade()" '+(!allow||!s.ap||s.developed?.includes(sel)?'disabled':'')+'>'+(o?'즉시 매각':'매수 확정')+' · 행동력 1</button>'+(o?.d?'<button class="wide" onclick="repay()">가용 현금으로 상환</button>':'')+(o&&a[2]==='토지'?'<button class="wide" onclick="develop()">PF 개발 착수</button>':'');if($('fund')){$('fund').value=loan;$('fund').onchange=e=>{loan=e.target.value;render()}}}
+else $('side').innerHTML='<span class="kicker">DIRECTOR’S NOTE</span><h2>'+(s.done?'결산 토론':'대표 수첩')+'</h2><p>'+(s.done?'같은 부동산을 현금으로 산 팀과 대출로 산 팀의 최종 손익은 어떻게 달라졌나요?':'“다음 분기 이자부터 계산해 보세요. 팔기 전까지 평가차익은 현금으로 쓸 수 없습니다.”')+'</p>'+pairs([['보유 부동산',Object.keys(s.own).length+'건'],['일반 담보대출',money(debt())],['PF 대출',money(s.pf?.draw||0)]]);
+$('msg').textContent=message;$('sources').innerHTML='최근 조회 자료 · <a href="https://data.bis.org/topics/CBPOL">BIS / 한국은행</a> '+obs.rd+' 기준금리 '+obs.rate+'% · <a href="https://frankfurter.dev/">Frankfurter / ECB</a> '+obs.fd+' 일별 환율 '+obs.fx+'원. 실행 시 최신 공표값을 조회하며 연결 실패 시 내장 관측값을 사용합니다. 이번 판 시작값은 금리 '+s.base.rate+'%, 환율 '+s.base.fx+'원입니다. 분기별 변동은 수업용 시나리오입니다.'}
+function selectAsset(i){if(s.done)return;tab='거래소';sel=i;loan='현금';render();if(innerWidth<781)$('side').scrollIntoView({behavior:'smooth'})}
+$('next').onclick=()=>{if(s.done){s=fresh();tab='거래소';sel=0;loan='현금';$('company').value='';message='';save();render()}else if(!s.started)start();else closeTurn()};$('company-form').onsubmit=e=>{e.preventDefault();start()};render();setInterval(()=>{if(s.started&&!s.done){if(Date.now()>=s.end)closeTurn();else $('clock').textContent=displayTime()}},500);
+async function loadMarkets(){await Promise.allSettled([fetch('https://api.frankfurter.dev/v1/latest?base=USD&symbols=KRW').then(r=>r.json()).then(j=>{if(j.rates.KRW>0&&/^\d{4}-\d{2}-\d{2}$/.test(j.date)){obs.fx=Number(j.rates.KRW);obs.fd=j.date}}),fetch('https://stats.bis.org/api/v1/data/WS_CBPOL/D.KR?lastNObservations=1&format=csv').then(r=>r.text()).then(t=>{let m=t.match(/,(\d{4}-\d{2}-\d{2}),([\d.]+),[A-Z],/);if(m){obs.rate=+m[2];obs.rd=m[1]}})]);if(!s.started){s.base={...obs};s.rate=obs.rate;s.fx=obs.fx}render()}loadMarkets();
+</script></html>
