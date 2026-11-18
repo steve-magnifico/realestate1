@@ -53,6 +53,7 @@ function start(){
   const room=parseRoom($('room').value);
   if(room&&!roomPattern.test(room)){message='수업 코드는 영문·숫자·하이픈 3~32자로 입력하세요.';render();$('room').focus();return}
   s.room=room;
+  s.runId=crypto.randomUUID();
   s.company=name;
   s.base={...obs};s.rate=obs.rate;s.fx=obs.fx;s.started=true;
   s.end=Date.now()+quarterMs;
@@ -117,10 +118,11 @@ else $('side').innerHTML='<span class="kicker">DIRECTOR’S NOTE</span><h2>'+(s.
 $('msg').textContent=message;$('sources').innerHTML='최근 조회 자료 · <a href="https://data.bis.org/topics/CBPOL">BIS / 한국은행</a> '+obs.rd+' 기준금리 '+obs.rate+'% · <a href="https://frankfurter.dev/">Frankfurter / ECB</a> '+obs.fd+' 일별 환율 '+obs.fx+'원. 실행 시 최신 공표값을 조회하며 연결 실패 시 내장 관측값을 사용합니다. 이번 판 시작값은 금리 '+s.base.rate+'%, 환율 '+s.base.fx+'원입니다. 분기별 변동은 수업용 시나리오입니다.'}
 function selectAsset(i){if(s.done)return;tab='거래소';sel=i;loan='현금';render();if(innerWidth<781)$('side').scrollIntoView({behavior:'smooth'})}
 const roomPattern=/^[A-Z0-9-]{3,32}$/;
-let connection,stopBoard,boardVersion=0;
+const connections=new Map();
+let stopBoard,boardVersion=0;
 const won=new Intl.NumberFormat('ko-KR',{style:'currency',currency:'KRW',maximumFractionDigits:0});
 function parseRoom(value){return value.trim().toUpperCase()}
-async function connectBoard(){
+async function connectBoard(appName){
   const configURL=location.protocol==='file:'?'https://steve-magnifico.github.io/realestate1/firebase-config.json':'./firebase-config.json';
   const response=await fetch(configURL,{cache:'no-cache'});
   if(!response.ok)throw Error('수업 순위표의 Firebase 설정을 확인해 주세요.');
@@ -128,7 +130,7 @@ async function connectBoard(){
   if(!config.projectId||!config.apiKey||!config.appId)throw Error('수업 순위표 연결 준비 중입니다. Firebase 웹 앱 설정이 필요합니다.');
   const sdk='https://www.gstatic.com/firebasejs/10.14.1/';
   const [appModule,authModule,dbModule]=await Promise.all(['firebase-app.js','firebase-auth.js','firebase-firestore.js'].map(file=>import(sdk+file)));
-  const app=appModule.getApps()[0]||appModule.initializeApp(config);
+  const app=appModule.initializeApp(config,appName);
   const auth=authModule.getAuth(app);
   await auth.authStateReady();
   const user=auth.currentUser||(await authModule.signInAnonymously(auth)).user;
@@ -165,23 +167,46 @@ async function openBoard(){
   }
   $('board-status').textContent='순위표 연결 중…';
   try{
-    connection??=connectBoard().catch(error=>{connection=null;throw error});
-    const {db,api,uid}=await connection;
+    const appName=game.runId?'game-'+game.runId:'[DEFAULT]';
+    if(!connections.has(appName)){
+      connections.set(appName,connectBoard(appName).catch(error=>{
+        connections.delete(appName);
+        throw error;
+      }));
+    }
+    const {db,api,uid}=await connections.get(appName);
     if(version!==boardVersion||game!==s)return;
     const scores=api.collection(db,'classes',room,'finishers');
     stopBoard=api.onSnapshot(scores,snap=>{
       if(version===boardVersion)drawBoard(snap.docs.map(d=>d.data()));
     },()=>{if(version===boardVersion)$('board-status').textContent='순위표를 읽을 수 없습니다. 연결과 Firestore 권한을 확인한 뒤 다시 시도하세요.'});
-    if(!game.done||game.q!==totalQuarters||game.scorePosted)return;
+    if(!game.done||game.q!==totalQuarters||(game.scorePosted&&game.boardVerified))return;
     $('board-post').textContent='최종 점수 제출 중…';
     const ref=api.doc(scores,uid);
     const score={company:game.company,amount:Math.round(worth()*100000000),quarter:totalQuarters};
     const created=await api.runTransaction(db,async tx=>{
-      if((await tx.get(ref)).exists())return false;
-      tx.set(ref,{...score,finishedAt:api.serverTimestamp()});return true;
+      const previous=await tx.get(ref);
+      if(previous.exists()){
+        const entry=previous.data();
+        return entry.company===score.company&&entry.amount===score.amount?'same':'different';
+      }
+      tx.set(ref,{...score,finishedAt:api.serverTimestamp()});return 'created';
     });
-    if(game===s){game.scorePosted=true;save()}
-    if(version===boardVersion)$('board-post').textContent=created?'완주 기록을 등록했습니다.':'이 수업에 이미 등록된 첫 완주 기록을 표시합니다.';
+    if(game!==s)return;
+    if(created==='different'){
+      if(!game.runId){
+        game.runId=crypto.randomUUID();
+        game.scorePosted=false;
+        save();
+        if(dialog.open)return openBoard();
+        return;
+      }
+      throw Error('이 게임의 저장 기록이 일치하지 않습니다.');
+    }
+    game.boardVerified=true;
+    game.scorePosted=true;
+    save();
+    if(version===boardVersion)$('board-post').textContent=created==='created'?'완주 기록을 등록했습니다.':'이번 게임의 완주 기록이 이미 등록되어 있습니다.';
   }catch(error){
     if(version!==boardVersion)return;
     $('board-post').textContent='';
@@ -202,6 +227,6 @@ $('join-board').onsubmit=e=>{
   openBoard();
 };
 
-$('next').onclick=()=>{if(s.done){s=fresh();tab='거래소';sel=0;loan='현금';$('company').value='';message='';save();render()}else if(!s.started)start();else closeTurn()};$('company-form').onsubmit=e=>{e.preventDefault();start()};render();if(s.done&&s.q===totalQuarters&&!s.scorePosted)openBoard();setInterval(()=>{if(s.started&&!s.done){if(Date.now()>=s.end)closeTurn();else $('clock').textContent=displayTime()}},500);
+$('next').onclick=()=>{if(s.done){s=fresh();tab='거래소';sel=0;loan='현금';$('company').value='';message='';save();render()}else if(!s.started)start();else closeTurn()};$('company-form').onsubmit=e=>{e.preventDefault();start()};render();if(s.done&&s.q===totalQuarters&&!s.boardVerified)openBoard();setInterval(()=>{if(s.started&&!s.done){if(Date.now()>=s.end)closeTurn();else $('clock').textContent=displayTime()}},500);
 async function loadMarkets(){await Promise.allSettled([fetch('https://api.frankfurter.dev/v1/latest?base=USD&symbols=KRW').then(r=>r.json()).then(j=>{if(j.rates.KRW>0&&/^\d{4}-\d{2}-\d{2}$/.test(j.date)){obs.fx=Number(j.rates.KRW);obs.fd=j.date}}),fetch('https://stats.bis.org/api/v1/data/WS_CBPOL/D.KR?lastNObservations=1&format=csv').then(r=>r.text()).then(t=>{let m=t.match(/,(\d{4}-\d{2}-\d{2}),([\d.]+),[A-Z],/);if(m){obs.rate=+m[2];obs.rd=m[1]}})]);if(!s.started){s.base={...obs};s.rate=obs.rate;s.fx=obs.fx}render()}loadMarkets();
 </script></html>
